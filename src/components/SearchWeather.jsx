@@ -4,7 +4,18 @@ const Searchweather = () => {
   const [search, setSearch] = useState("london");
   const [data, setData] = useState([]);
   const [input, setInput] = useState("");
+  const [listCity, setListCity] = useState([]);
+  
+  
   let componentMounted = true;
+  useEffect(() => {
+    fetch("http://localhost:3001/current.city.list.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setListCity(data.map((d) => d.name));
+      })
+      .catch((err) => console.log(err));
+  }, []);
   useEffect(() => {
     const fetchWeather = async () => {
       const response = await fetch(
@@ -20,6 +31,7 @@ const Searchweather = () => {
     };
     fetchWeather();
   }, [search]);
+  console.log(listCity);
   let emoji = null;
   if (data.main) {
     if (data.weather[0].main == "Clouds") {
@@ -84,6 +96,7 @@ const Searchweather = () => {
                       onChange={(e) => setInput(e.target.value)}
                       required
                     />
+                    
 
                     <button
                       type="submit"
