@@ -48,7 +48,7 @@ const Searchweather = () => {
   const month = d.toLocaleString("default", { month: "long" });
   const day = d.toLocaleString("default", { weekday: "long" });
 
-  let time = d.toLocaleString([], {
+  const time = d.toLocaleString([], {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
