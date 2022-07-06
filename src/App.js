@@ -1,5 +1,5 @@
 import './App.css';
-import SearchWeather from './components/SearchWeather';
+import SearchWeather from './components/search-weather/SearchWeather';
 function App() {
   return (
     <div>
