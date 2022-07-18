@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-
+import AutocompleteComponent from "./AutocompleteComponent";
+import "./SearchWeather.css";
 const Searchweather = () => {
   const [search, setSearch] = useState("london");
   const [data, setData] = useState([]);
   const [input, setInput] = useState("");
   const [listCity, setListCity] = useState([]);
-  
-  
+
   let componentMounted = true;
   useEffect(() => {
     fetch("http://localhost:3001/current.city.list.json")
@@ -65,7 +65,6 @@ const Searchweather = () => {
     minute: "2-digit",
     second: "2-digit",
   });
-
   const handleSubmit = (event) => {
     event.preventDefault();
     setSearch(input);
@@ -83,26 +82,11 @@ const Searchweather = () => {
                 alt="..."
               />
               <div class="card-img-overlay">
-                <form onSubmit={handleSubmit}>
-                  <div class="input-group mb-4 w-75 mx-auto">
-                    <input
-                      type="search"
-                      class="form-control"
-                      placeholder="Search City"
-                      aria-label="Search City"
-                      aria-describedby="basic-addon2"
-                      name="search"
-                      value={input}
-                      onChange={(e) => setInput(e.target.value)}
-                      required
-                    />
-                    
+                <form >
+                  <div class="InputAutocomplete" onSubmit={handleSubmit}>
+                     <AutocompleteComponent />
 
-                    <button
-                      type="submit"
-                      class="input-group-text"
-                      id="basic-addon2"
-                    >
+                    <button type="submit" id="basic-addon2">
                       <i className="fas fa-search"></i>
                     </button>
                   </div>
